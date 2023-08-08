@@ -1,7 +1,24 @@
 {
   "version": "0.1",
   "prefixes": {
+    "schema": "http://schema.org/"
   },
   "resources": {
+    "wiki-links-to": {
+      "name": "wiki-links-to",
+      "path": "about",
+      "class": "schema:WebApi",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "schema:name",
+        },
+        "status": {
+          "type": "schema:GameServerStatus",
+          "predicate": "schema:serverStatus",
+        }
+      },
+      "new-resource-base": "http://mu.semte.ch/application"
+    }
   }
 }

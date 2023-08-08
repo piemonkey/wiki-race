@@ -1,0 +1,10 @@
+PREFIX schema: <http://schema.org/>
+PREFIX semcore: <http://mu.semte.ch/vocabularies/core/>
+
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/application> {
+    <http://example.com/wiki-links-to> a schema:WebApi;
+      semcore:uuid "64BFEE4183FC9C0009000002";
+      schema:serverStatus schema:GameServerStatus::Online.
+  }
+}
