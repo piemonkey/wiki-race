@@ -13,6 +13,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/about/"
   end
 
+  match "/play/*path", @any do
+    Proxy.forward conn, path, "http://wiki-race/"
+  end
+
   match "/*_", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
