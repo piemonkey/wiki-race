@@ -1,0 +1,12 @@
+{
+  "name": "wiki-race",
+  "version": "0.0.1",
+  "description": "Race link-by-link through Wikipedia (well, DBpedia) to find the shortest path to a target",
+  "main": "app.js",
+  "scripts": {},
+  "author": "",
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "eslint": "^8.46.0"
+  }
+}

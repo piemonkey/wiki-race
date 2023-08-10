@@ -1,0 +1,2 @@
+# Add node_modules for e.g. running eslint during dev
+node_modules
