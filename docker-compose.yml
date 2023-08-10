@@ -3,9 +3,9 @@ version: '3.4'
 services:
   wiki-race:
     # move this into compose.dev later and replace with built image
-    build: ./wiki-race
+    build: ./wiki-race-service
     volumes:
-      - ./wiki-race/:/app/
+      - ./wiki-race-service/:/app/
     ports:
       - 8888:80
       - 9229:9229
