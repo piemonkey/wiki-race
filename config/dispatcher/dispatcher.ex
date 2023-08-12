@@ -13,6 +13,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/about/"
   end
 
+  match "/games/*path", @json do
+    Proxy.forward conn, path, "http://resource/games/"
+  end
+
   match "/pages/*path", @any do
     Proxy.forward conn, path, "http://wiki-race/"
   end

@@ -5,10 +5,10 @@ export default class PlayRoute extends Route {
   @service store
 
   async model() {
-    const game = this.store.createRecord('game', { user: 'Test' })
-    // await game.save()
-    const page = await this.store.findRecord('page', 'Open_data')
-    console.log('huh', page)
+    const pageId = 'Open_data'
+    const game = this.store.createRecord('game', { user: 'Test', page: pageId })
+    await game.save()
+    const page = await this.store.findRecord('page', pageId)
     return { game, page }
   }
 }

@@ -1,9 +1,30 @@
 {
   "version": "0.1",
   "prefixes": {
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "totlg": "http://data.totl.net/game"
   },
   "resources": {
+    "game": {
+      "class": "totlg:Game",
+      "path": "games",
+      "new-resource-base": "ext:game",
+      "attributes": {
+        "user": {
+          "type": "string",
+          "predicate": "foaf:accountName"
+        },
+        "step": {
+          "type": "number",
+          "predicate": "ext:step"
+        },
+        "page": {
+          "type": "uri",
+          "predicate": "ext:fixme"
+        }
+      }
+    },
     "wiki-links-to": {
       "name": "wiki-links-to",
       "path": "about",
