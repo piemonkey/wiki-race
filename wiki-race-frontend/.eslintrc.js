@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   root: true,
@@ -53,4 +53,4 @@ module.exports = {
       extends: ['plugin:qunit/recommended'],
     },
   ],
-};
+}
