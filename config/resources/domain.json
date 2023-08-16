@@ -20,7 +20,7 @@
           "predicate": "ext:step"
         },
         "page": {
-          "type": "uri",
+          "type": "string",
           "predicate": "ext:fixme"
         }
       }

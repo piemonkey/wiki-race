@@ -14,10 +14,10 @@ async function dbQuery(query) {
   return JSON.parse(raw.body)
 }
 
-      // dbr:${pageName} rdfs:label ?label;
 export async function getPage(pageName) {
   // TODO Figure out how to sanitise this user input
-  // TODO What's a sensible limit? Stick with 100 for now
+  // TODO Requests seem to time out at higher than limit 200. Need to add pagination.
+  // TODO handle redirects for pages
   const result = await dbQuery(SPARQL`
     SELECT ?label ?abstract ?target ?targetLabel
     WHERE {
@@ -26,7 +26,9 @@ export async function getPage(pageName) {
 	dbo:wikiPageWikiLink ?target.
       ?target rdfs:label ?targetLabel.
       FILTER (lang(?abstract) = "en" && lang(?label) = "en" && lang(?targetLabel) = "en")
-    } LIMIT 100
+    }
+    ORDER BY ?targetLabel
+    LIMIT 200
   `)
 
   if (result.results.bindings.length === 0) {
