@@ -1,15 +1,5 @@
 {{page-title "Play"}}
 
-<h2>Page {{@model.game.step}}</h2>
-<h3>{{@model.page.title}}</h3>
+<h2>Page {{@model.step}}</h2>
 
-<p>{{@model.page.abstract}}</p>
-
-<ul>
-  {{#each @model.page.links as |link|}}
-    <li>
-      {{!-- TODO handle category pages and others with the same name --}}
-      <LinkTo @route="play" @model={{link.target}}>{{link.label}}</LinkTo>
-    </li>
-  {{/each}}
-</ul>
+{{outlet}}

@@ -1,0 +1,12 @@
+<h3>{{@model.title}}</h3>
+
+<p>{{@model.abstract}}</p>
+
+<ul>
+  {{#each @model.links as |link|}}
+    <li>
+      {{!-- TODO handle category pages and others with the same name --}}
+      <button type="button" {{on "click" (fn this.next link.target)}}>{{link.label}}</button>
+    </li>
+  {{/each}}
+</ul>

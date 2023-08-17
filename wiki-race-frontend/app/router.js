@@ -7,5 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('play', { path: '/play/:page_id' })
+  this.route('play', { path: '/play/:game_id' }, function () {
+    this.route('page', { path: '/:step' })
+  })
 })
