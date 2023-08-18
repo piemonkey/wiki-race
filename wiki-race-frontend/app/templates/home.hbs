@@ -1,0 +1,15 @@
+{{page-title "Home"}}
+
+<NewGame />
+
+{{#if @model}}
+  <ul>
+    {{#each @model as |game|}}
+      <li>
+        <LinkTo @route="play.page" @models={{array game.id game.step}}>Step {{game.step}}: {{game.page}}</LinkTo>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Welcome to your first wiki race!</p>
+{{/if}}

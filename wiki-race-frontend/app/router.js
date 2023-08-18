@@ -10,4 +10,5 @@ Router.map(function () {
   this.route('play', { path: '/play/:game_id' }, function () {
     this.route('page', { path: '/:step' })
   })
+  this.route('home')
 })
