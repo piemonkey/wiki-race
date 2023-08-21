@@ -48,3 +48,13 @@ services:
       - database:database
     volumes:
       - ./config/migrations:/data/migrations
+  registration:
+    image: semtech/mu-registration-service:2.7.3
+    links:
+      - database:database
+    environment:
+      - MU_AUTO_LOGIN_ON_REGISTRATION=true
+  login:
+    image: semtech/mu-login-service:3.0.0
+    links:
+      - database:database

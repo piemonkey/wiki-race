@@ -1,3 +1,9 @@
 <h1>Wiki Race!</h1>
 
-<LinkTo @route="home">Login</LinkTo>
+{{#if this.session.isAuthenticated}}
+  <p>Welcome back!</p>
+  <LinkTo @route="home">Play a game</LinkTo>
+  <MuLogout />
+{{else}}
+  <LinkTo @route="login">Login</LinkTo>
+{{/if}}

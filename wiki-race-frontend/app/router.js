@@ -11,4 +11,6 @@ Router.map(function () {
     this.route('page', { path: '/:step' })
   })
   this.route('home')
+  this.route('register')
+  this.route('login')
 })

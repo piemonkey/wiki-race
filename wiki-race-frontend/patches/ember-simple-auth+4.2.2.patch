@@ -1,0 +1,10 @@
+diff --git a/node_modules/ember-simple-auth/addon/utils/assign.js b/node_modules/ember-simple-auth/addon/utils/assign.js
+index 10fa68e..820bf70 100644
+--- a/node_modules/ember-simple-auth/addon/utils/assign.js
++++ b/node_modules/ember-simple-auth/addon/utils/assign.js
+@@ -1,3 +1,3 @@
+-import { assign } from '@ember/polyfills';
++// import { assign } from '@ember/polyfills';
+ 
+-export default Object.assign || assign;
++export default Object.assign // || assign;
