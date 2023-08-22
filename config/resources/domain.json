@@ -3,13 +3,13 @@
   "prefixes": {
     "schema": "http://schema.org/",
     "foaf": "http://xmlns.com/foaf/0.1/",
-    "totlg": "http://data.totl.net/game"
+    "totlg": "http://data.totl.net/game/"
   },
   "resources": {
     "game": {
       "class": "totlg:Game",
       "path": "games",
-      "new-resource-base": "ext:game",
+      "new-resource-base": "ext:game/",
       "attributes": {
         "user": {
           "type": "string",
