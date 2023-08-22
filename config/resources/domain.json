@@ -9,7 +9,7 @@
     "game": {
       "class": "totlg:Game",
       "path": "games",
-      "new-resource-base": "ext:game/",
+      "new-resource-base": "http://mu.semte.ch/vocabularies/ext/game/",
       "attributes": {
         "user": {
           "type": "string",
