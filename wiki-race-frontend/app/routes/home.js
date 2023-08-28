@@ -5,6 +5,9 @@ export default class HomeRoute extends Route {
   @service store
 
   async model() {
-    return this.store.query('game', { filter: { user: 'Tester' } })
+    const games = await this.store.query('game', { include: 'steps' })
+    return Promise.all(
+      games.map((game) => game.steps.then((steps) => ({ game, steps })))
+    )
   }
 }

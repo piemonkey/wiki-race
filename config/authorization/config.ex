@@ -48,7 +48,7 @@ defmodule Acl.UserGroups.Config do
           %GraphSpec{
             graph: "http://mu.semte.ch/graphs/games/",
             constraint: %ResourceFormatConstraint{
-              resource_prefix: "http://mu.semte.ch/vocabularies/ext/game/"
+              resource_prefix: "http://mu.semte.ch/vocabularies/ext/"
             }
           }
         ]

@@ -6,6 +6,12 @@ export default class PlayRoute extends Route {
 
   async model(params) {
     const gameId = params.game_id
-    return this.store.findRecord('game', gameId)
+    const game = await this.store.findRecord('game', gameId, {
+      include: 'steps',
+    })
+    return {
+      game,
+      steps: await game.steps,
+    }
   }
 }

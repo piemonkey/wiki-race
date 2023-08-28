@@ -5,5 +5,10 @@
   <LinkTo @route="home">Play a game</LinkTo>
   <MuLogout />
 {{else}}
-  <LinkTo @route="login">Login</LinkTo>
+  <div>
+    <LinkTo @route="login">Login</LinkTo>
+  </div>
+  <div>
+    <LinkTo @route="register">Create an account</LinkTo>
+  </div>
 {{/if}}

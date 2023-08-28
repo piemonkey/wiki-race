@@ -9,23 +9,23 @@ defmodule Dispatcher do
   @json %{ accept: %{ json: true } }
   @html %{ accept: %{ html: true } }
 
-  match "/about/*path", @json do
+  match "/about/*path", @any do
     Proxy.forward conn, path, "http://resource/about/"
   end
 
-  match "/games/*path", @json do
-    Proxy.forward conn, path, "http://resource/games/"
+  match "/wiki-race/*path", @json do
+    Proxy.forward conn, path, "http://resource/"
   end
 
   match "/pages/*path", @any do
     Proxy.forward conn, path, "http://wiki-race/"
   end
 
-  match "/accounts/\*path" do
+  match "/accounts/\*path", @json do
     Proxy.forward conn, path, "http://registration/accounts/"
   end
 
-  match "/sessions/\*path" do
+  match "/sessions/\*path", @json do
     Proxy.forward conn, path, "http://login/sessions/"
   end
 

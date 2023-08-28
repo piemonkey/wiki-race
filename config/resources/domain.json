@@ -6,22 +6,42 @@
     "totlg": "http://data.totl.net/game/"
   },
   "resources": {
-    "game": {
+    "games": {
       "class": "totlg:Game",
-      "path": "games",
       "new-resource-base": "http://mu.semte.ch/vocabularies/ext/game/",
       "attributes": {
         "user": {
           "type": "string",
           "predicate": "foaf:accountName"
         },
+      },
+      "relationships": {
+        "steps": {
+          "target": "game-steps",
+          "predicate": "ext:step",
+          "cardinality": "many"
+        }
+      }
+    },
+    "game-steps": {
+      "class": "ext:GameStep",
+      "new-resource-base": "http://mu.semte.ch/vocabularies/ext/game-step/",
+      "attributes": {
+        "page": {
+          "type": "string",
+          "predicate": "ext:page"
+        },
         "step": {
           "type": "number",
           "predicate": "ext:step"
-        },
-        "page": {
-          "type": "string",
-          "predicate": "ext:fixme"
+        }
+      },
+      "relationships": {
+        "game": {
+          "target": "games",
+          "predicate": "ext:step",
+          "cardinality": "one",
+          "inverse": true
         }
       }
     },

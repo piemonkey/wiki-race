@@ -2,8 +2,8 @@ import { app } from 'mu'
 import { getPage } from './services/dbpedia.js'
 import { openDataResponse } from './cannedResponse.js'
 
-function cannedResponse() {
-  return openDataResponse
+function cannedResponse(id) {
+  return openDataResponse(id)
 }
 
 function toErrors(detail) {
@@ -52,7 +52,7 @@ app.get('/:id', function getPageEndpoint(req, res) {
       .json(toErrors('Bad Request, need to provide page id'))
   }
   if (process.env.OFFLINE) {
-    return res.json(cannedResponse())
+    return res.json(cannedResponse(id))
   }
   getPage(id)
     .then(({ status, result }) => {

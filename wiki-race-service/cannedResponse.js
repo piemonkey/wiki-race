@@ -1,11 +1,11 @@
-export const openDataResponse = {
+export const openDataResponse = (id) => ({
     "data": {
         "attributes": {
             "abstract": "Open data is data that is openly accessible, exploitable, editable and shared by anyone for any purpose. Open data is licensed under an open license. The goals of the open data movement are similar to those of other \"open(-source)\" movements such as open-source software, hardware, open content, open specifications, open education, open educational resources, open government, open knowledge, open access, open science, and the open web. The growth of the open data movement is paralleled by a rise in intellectual property rights. The philosophy behind open data has been long established (for example in the Mertonian tradition of science), but the term \"open data\" itself is recent, gaining popularity with the rise of the Internet and World Wide Web and, especially, with the launch of open-data government initiatives such as Data.gov, Data.gov.uk and Data.gov.in. Open data can be linked data - referred to as linked open data. One of the most important forms of open data is open government data (OGD), which is a form of open data created by ruling government institutions. Open government data's importance is born from it being a part of citizens' everyday lives, down to the most routine/mundane tasks that are seemingly far removed from government. The abbreviation FAIR/O data is sometimes used to indicate that the dataset or database in question complies with the principles of FAIR data and carries an explicit data‑capable open license.",
-            "title": "Open data",
-            "uri": "Open_data"
+            "title": `${id} (Fake Page, offline)`,
+            "uri": id
         },
-        "id": "Open_data",
+        "id": id,
         "relationships": {
             "links": {
                 "data": [
@@ -1516,4 +1516,4 @@ export const openDataResponse = {
             "type": "page-link"
         }
     ]
-}
+})
