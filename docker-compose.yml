@@ -2,15 +2,12 @@ version: '3.4'
 
 services:
   wiki-race:
-    # move this into compose.dev later and replace with built image
-    build: ./wiki-race-service
-    volumes:
-      - ./wiki-race-service/:/app/
+    image: piemonkey/wiki-race-service
     ports:
       - 8888:80
-      - 9229:9229
     environment:
-      NODE_ENV: "development"
+      NODE_ENV: "production"
+
   identifier:
     image: semtech/mu-identifier:1.10.0
     environment:
@@ -19,6 +16,7 @@ services:
       - dispatcher:dispatcher
     ports:
       - "80:80"
+
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.2
     links:
@@ -26,7 +24,7 @@ services:
       - wiki-race:wiki-race
     volumes:
       - ./config/dispatcher:/config
-      - /home/rich/coding/redpencil/mu-dispatcher/lib:/app/lib
+
   triplestore:
     image: redpencil/virtuoso:1.2.0-rc.1
     environment:
@@ -37,31 +35,35 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+
   database:
     image: semtech/mu-authorization:0.6.0-beta.8
     environment:
       - MU_SPARQL_ENDPOINT=http://triplestore:8890/sparql
     volumes:
       - ./config/authorization:/config
+
   resource:
     image: semtech/mu-cl-resources:1.22.2
     links:
       - database:database
     volumes:
       - ./config/resources:/config
+
   migrations:
     image: semtech/mu-migrations-service:0.8.0
     links:
       - triplestore:database
     volumes:
       - ./config/migrations:/data/migrations
+
   registration:
     image: semtech/mu-registration-service:2.7.3
     links:
       - database:database
-    environment:
-      - MU_AUTO_LOGIN_ON_REGISTRATION=true
+
   login:
     image: semtech/mu-login-service:3.0.0
     links:
       - database:database
+

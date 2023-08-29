@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  wiki-race:
+    build: ./wiki-race-service
+    volumes:
+      - ./wiki-race-service/:/app/
+    ports:
+      - 9229:9229
+    environment:
+      NODE_ENV: "development"
+      # OFFLINE: true
+
+  database:
+    environment:
+      - LOG_OUTGOING_SPARQL_QUERIES=true
+      - LOG_INCOMING_SPARQL_QUERIES=true
+      - LOG_ACCESS_RIGHTS=true
+      - INSPECT_ACCESS_RIGHTS_PROCESSING=true
+      - LOG_OUTGOING_SPARQL_QUERY_RESPONSES=true
+      - LOG_OUTGOING_SPARQL_QUERY_ROUNDTRIP=true
+
