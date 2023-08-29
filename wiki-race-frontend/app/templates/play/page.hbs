@@ -5,7 +5,6 @@
 <ul>
   {{#each @model.page.links as |link|}}
     <li>
-      {{!-- TODO handle category pages and others with the same name --}}
       <button type="button" {{on "click" (fn this.next link.target)}}>{{link.label}}</button>
     </li>
   {{/each}}

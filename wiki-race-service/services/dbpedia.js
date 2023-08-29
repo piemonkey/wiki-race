@@ -3,6 +3,7 @@ import { SparqlClient, SPARQL } from 'sparql-client-2'
 const PREFIXES = {
   dbr: 'http://dbpedia.org/resource/',
   dbo: 'http://dbpedia.org/ontology/',
+  skos: 'http://www.w3.org/2004/02/skos/core#',
 }
 const HITLER = 'http://dbpedia.org/resource/Adolf_Hitler'
 
@@ -17,14 +18,21 @@ async function dbQuery(query) {
 export async function getPage(pageName) {
   // TODO Figure out how to sanitise this user input
   // TODO Requests seem to time out at higher than limit 200. Need to add pagination.
-  // TODO handle redirects for pages
   const result = await dbQuery(SPARQL`
     SELECT ?label ?abstract ?target ?targetLabel
     WHERE {
       ${{ dbr: pageName }} rdfs:label ?label;
 	dbo:abstract ?abstract;
-	dbo:wikiPageWikiLink ?target.
+	dbo:wikiPageWikiLink ?linkedTarget.
+      OPTIONAL {
+        ?linkedTarget dbo:wikiPageRedirects ?realTarget.
+      }
+      BIND(IF(BOUND(?realTarget), ?realTarget, ?linkedTarget) as ?target)
+      MINUS {
+	?target a skos:Concept.
+      }
       ?target rdfs:label ?targetLabel.
+
       FILTER (lang(?abstract) = "en" && lang(?label) = "en" && lang(?targetLabel) = "en")
     }
     ORDER BY ?targetLabel

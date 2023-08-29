@@ -1,48 +1,10 @@
 import { app } from 'mu'
 import { getPage } from './services/dbpedia.js'
+import { toErrors, toJsonApi } from './services/jsonApi.js'
 import { openDataResponse } from './cannedResponse.js'
 
 function cannedResponse(id) {
   return openDataResponse(id)
-}
-
-function toErrors(detail) {
-  return { errors: [{ detail }] }
-}
-function getLinkId(link) {
-  return link.replace('http://dbpedia.org/resource/', '')
-}
-
-function toJsonApi(id, { result }) {
-  const { results: { bindings } } = result
-  // TODO either handle potential errors or see if there's a good lib
-  return {
-    data: {
-      id,
-      type: 'page',
-      attributes: {
-        uri: id,
-        title: bindings[0].label.value,
-        abstract: bindings[0].abstract.value,
-      },
-      relationships: {
-        links: {
-          data: bindings.map((link) => ({
-            id: getLinkId(link.target.value),
-            type: 'page-link',
-          })),
-        },
-      },
-    },
-    included: bindings.map((link) => ({
-      id: getLinkId(link.target.value),
-      type: 'page-link',
-      attributes: {
-        label: link.targetLabel.value,
-        target: getLinkId(link.target.value),
-      },
-    })),
-  }
 }
 
 app.get('/:id', function getPageEndpoint(req, res) {
