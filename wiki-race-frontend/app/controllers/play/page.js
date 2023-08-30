@@ -13,8 +13,7 @@ export default class PlayPageController extends Controller {
       page,
       step: this.stepNum + 1,
     })
-    steps.push(nextStep)
-    steps.save()
+    game.saveNextStep(nextStep, steps)
     this.router.transitionTo('play.page', game.id, nextStep.step)
     window.scrollTo(0, 0)
   }

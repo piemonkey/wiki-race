@@ -8,6 +8,7 @@ export default class PlayRoute extends Route {
     const gameId = params.game_id
     const game = await this.store.findRecord('game', gameId, {
       include: 'steps',
+      sort: 'steps.step',
     })
     return {
       game,

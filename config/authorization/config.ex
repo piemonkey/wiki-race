@@ -31,7 +31,7 @@ defmodule Acl.UserGroups.Config do
       # // SAVED GAME DATA
       %GroupSpec{
         name: "games",
-        useage: [:read, :write],
+        useage: [:read, :read_for_write, :write],
         access: %AccessByQuery{
           vars: ["accountName"],
           query: "
