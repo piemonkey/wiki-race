@@ -1,15 +1,1 @@
-{{#if @model.hasWon}}
-  <h1>You found Hitler!</h1>
-{{else}}
-<h3>{{@model.page.title}}</h3>
-
-<p>{{@model.page.abstract}}</p>
-
-<ul>
-  {{#each @model.page.links as |link|}}
-    <li>
-      <button type="button" {{on "click" (fn this.next link.target)}}>{{link.label}}</button>
-    </li>
-  {{/each}}
-</ul>
-{{/if}}
+<WikiPage @game={{@model.game}} @page={{@model.page}} @stepNum={{@model.stepNum}} />

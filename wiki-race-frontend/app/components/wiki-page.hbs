@@ -1,0 +1,15 @@
+{{#if this.hasWon}}
+  <h1>You found Hitler!</h1>
+{{else}}
+<h3>{{@page.title}}</h3>
+
+<p>{{@page.abstract}}</p>
+
+<ul>
+  {{#each @page.links as |link|}}
+    <li>
+      <button type="button" {{on "click" (fn this.next link.target)}}>{{link.label}}</button>
+    </li>
+  {{/each}}
+</ul>
+{{/if}}
