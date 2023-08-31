@@ -10,10 +10,14 @@
       "class": "totlg:Game",
       "new-resource-base": "http://mu.semte.ch/vocabularies/ext/game/",
       "attributes": {
-        "user": {
+        "status": {
           "type": "string",
-          "predicate": "foaf:accountName"
+          "predicate": "totlg:status"
         },
+        "last-played": {
+          "type": "datetime",
+          "predicate": "ext:last-played"
+        }
       },
       "relationships": {
         "steps": {

@@ -2,9 +2,9 @@
 
 <NewGame />
 
-{{#if @model}}
+{{#if @model.unfinished}}
   <ul>
-    {{#each @model as |game|}}
+    {{#each @model.unfinished as |game|}}
       <li>
         <ContinueGameLink @game={{game.game}} @steps={{game.steps}} />
       </li>
@@ -12,6 +12,17 @@
   </ul>
 {{else}}
   <p>Welcome to your first wiki race!</p>
+{{/if}}
+
+{{#if @model.finished}}
+  <h3>Finished games</h3>
+  <ul>
+    {{#each @model.finished as |game|}}
+      <li>
+        Game finished in {{game.steps.length}} steps: {{game-play-date game.game.lastPlayed}}
+      </li>
+    {{/each}}
+  </ul>
 {{/if}}
 
 <MuLogout />

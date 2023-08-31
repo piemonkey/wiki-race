@@ -1,3 +1,6 @@
+{{#if @model.hasWon}}
+  <h1>You found Hitler!</h1>
+{{else}}
 <h3>{{@model.page.title}}</h3>
 
 <p>{{@model.page.abstract}}</p>
@@ -9,3 +12,4 @@
     </li>
   {{/each}}
 </ul>
+{{/if}}

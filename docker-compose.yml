@@ -5,6 +5,8 @@ services:
     image: piemonkey/wiki-race-service
     ports:
       - 8888:80
+    volumes:
+      - ./wiki-race-service/patches/sparql-client.js:/usr/src/app/node_modules/sparql-client-2/lib/client.js
     environment:
       NODE_ENV: "production"
 

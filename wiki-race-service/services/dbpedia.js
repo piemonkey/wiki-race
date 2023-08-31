@@ -15,7 +15,13 @@ async function dbQuery(query) {
   return JSON.parse(raw.body)
 }
 
+const dumbCache = new Map()
+
 export async function getPage(pageName) {
+  const cached = dumbCache.get(pageName)
+  if (cached) {
+    return { status: 'normal', result: cached }
+  }
   // TODO Figure out how to sanitise this user input
   // TODO Requests seem to time out at higher than limit 200. Need to add pagination.
   const result = await dbQuery(SPARQL`
@@ -24,6 +30,7 @@ export async function getPage(pageName) {
       ${{ dbr: pageName }} rdfs:label ?label;
 	dbo:abstract ?abstract;
 	dbo:wikiPageWikiLink ?linkedTarget.
+      FILTER (lang(?abstract) = "en" && lang(?label) = "en")
       OPTIONAL {
         ?linkedTarget dbo:wikiPageRedirects ?realTarget.
       }
@@ -33,7 +40,7 @@ export async function getPage(pageName) {
       }
       ?target rdfs:label ?targetLabel.
 
-      FILTER (lang(?abstract) = "en" && lang(?label) = "en" && lang(?targetLabel) = "en")
+      FILTER (lang(?targetLabel) = "en")
     }
     ORDER BY ?targetLabel
     LIMIT 200
@@ -41,7 +48,10 @@ export async function getPage(pageName) {
 
   if (result.results.bindings.length === 0) {
     return { status: 'fail' }
+  } else {
+    dumbCache.set(pageName, result)
   }
+
   const hitlerLink = result.results.bindings.find(({ target }) =>
     target.type === 'uri' && target.value === HITLER)
   if (hitlerLink) {

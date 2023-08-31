@@ -11,7 +11,8 @@ export default class NewGameComponent extends Component {
   @action
   async createGame() {
     const newGame = this.store.createRecord('game', {
-      user: 'Tester',
+      status: 'Ongoing',
+      lastPlayed: new Date(),
       steps: [],
     })
     await newGame.save()
