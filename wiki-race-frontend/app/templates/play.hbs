@@ -1,5 +1,8 @@
 {{page-title "Play"}}
 
-<h2>Page {{@model.steps.length}}</h2>
+<h2>Wiki Race!</h2>
+
+<h4>This game:</h4>
+<GameBreadcrumb @game={{@model.game}} @steps={{@model.steps}} />
 
 {{outlet}}

@@ -1,3 +1,3 @@
-<LinkTo @route="play.page" @models={{array @game this.currentStep.step}}>
-  {{this.currentStep.page}} ({{this.currentStep.step}} steps)
+<LinkTo @route="play.page" @models={{array @game.id this.currentStep.step}}>
+  {{this.currentStep.page}} ({{this.currentStep.step}} steps) <small>[last played {{game-play-date @game.lastPlayed}}]</small>
 </LinkTo>

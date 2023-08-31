@@ -11,7 +11,7 @@ const dbClient = new SparqlClient('https://dbpedia.org/sparql')
   .register(PREFIXES)
 
 async function dbQuery(query) {
-  const raw = await dbClient.query(query).executeRaw()
+  const raw = await dbClient.query(query).executeRaw({ timeout: 50000 })
   return JSON.parse(raw.body)
 }
 

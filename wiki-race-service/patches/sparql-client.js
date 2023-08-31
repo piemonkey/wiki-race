@@ -8,7 +8,6 @@ var defaults = require('lodash/defaults');
 var assign = require('lodash/assign');
 
 var Query = require('./query');
-var formatter = require('./formatter');
 
 
 /**
@@ -57,7 +56,7 @@ var SparqlClient = module.exports = function SparqlClient(endpoint, options) {
 
         return doRequest(requestOptions)
             .then(function (response) {
-                var responseBody, error;
+                var error;
                 if (response.statusCode >= 300) {
                     error = new Error(formatErrorMessage(response));
                     /* Patch .httpStatus onto the object. */
@@ -66,24 +65,7 @@ var SparqlClient = module.exports = function SparqlClient(endpoint, options) {
                     throw error;
                 }
 
-                // According to the spec, the response can have no content;
-                // (hence, parsing JSON would just crash here).
-                // https://www.w3.org/TR/2013/REC-sparql11-http-rdf-update-20130321/#http-post
-                responseBody = maybeParseJSON(response.body);
-
-                if (queryOptions) {
-                    formatter.format(responseBody, queryOptions);
-                }
-                return responseBody;
-
-                function maybeParseJSON(body) {
-                    // Catch invalid JSON
-                    try {
-                        return JSON.parse(body);
-                    } catch (ex) {
-                        return null;
-                    }
-                }
+                return response;
 
                 function formatErrorMessage(res) {
                     var code = res.statusCode;

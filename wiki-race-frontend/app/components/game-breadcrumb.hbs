@@ -1,0 +1,9 @@
+{{#each this.steps as |step index|}}
+  {{#if index}}
+    {{!-- template-lint-disable no-triple-curlies --}}
+    {{{" > "}}}
+  {{/if}}
+  <LinkTo @route="play.page" @models={{array @game step.step}}>
+    {{step.page}}
+  </LinkTo>
+{{/each}}
