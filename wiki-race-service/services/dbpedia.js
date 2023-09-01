@@ -43,7 +43,7 @@ export async function getPage(pageName) {
       FILTER (lang(?targetLabel) = "en")
     }
     ORDER BY ?targetLabel
-    LIMIT 200
+    LIMIT 500
   `)
 
   if (result.results.bindings.length === 0) {
